@@ -1,6 +1,6 @@
 # Control The Bulb
 
-I was created for change time when I want to turn on the light. I can set time to off.I want to turn off the light. I can set time to off.
+It was created for change time when I want to turn on the light. I can set time to off.I want to turn off the light. I can set time to off.
 
 ###### Doing?
 
