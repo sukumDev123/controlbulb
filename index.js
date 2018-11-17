@@ -8,18 +8,31 @@ if (config.apiKey) {
   const starCountRef = firebase.database().ref("bulb-parant");
   starCountRef.on("value", function(snapshot) {
     console.log("New data in realtime database.");
-    // console.log(snapshot.val());
     keyObjects = Object.keys(snapshot.val());
     dataObjects = snapshot.val();
   });
   setInterval(() => {
     if (keyObjects.length > 0) {
       console.log("Doing now 5 s.");
-      aboutTime.updateTimeOpen(keyObjects, dataObjects, firebase);
-      aboutTime.updateTimeClose(keyObjects, dataObjects, firebase);
+      const updateonissuccess = aboutTime.updateTimeOpen(
+        keyObjects,
+        dataObjects,
+        firebase
+      );
+      const updateoffissuccess = aboutTime.updateTimeClose(
+        keyObjects,
+        dataObjects,
+        firebase
+      );
+      if (updateoffissuccess || updateonissuccess) {
+        keyObjects = [];
+      }
+      keyObjects = keyObjects.filter(
+        key => dataObjects[key].setOpen || dataObjects[key].setClose
+      );
+      console.log("This filed set time :", keyObjects);
     }
-    // console.log();
-  }, 5000);
+  }, 1000);
 } else {
   console.log("You not have api key.");
 }

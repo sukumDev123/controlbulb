@@ -1,5 +1,5 @@
 exports.calTime = time => {
-  const timeNeedToCal = +new Date(time) - +new Date();
+  const timeNeedToCal = time - +new Date();
   if (timeNeedToCal <= 0) {
     return 0;
   }
